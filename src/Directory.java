@@ -10,12 +10,12 @@ public class Directory {
         this.subdirectories = new TreeMap<>();
     }
 
-    public void create(String directory, Directory existing) {
+    public void create(String directory, Directory existing) throws Exception {
         if (directory.isEmpty()) {
             return;
         }
         if (subdirectories.containsKey(directory)) {
-            System.out.println("Directory already exists");
+            throw new Exception(directory);
         } else {
             if (existing == null) {
                 subdirectories.put(directory, new Directory(directory));

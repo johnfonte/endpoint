@@ -81,14 +81,17 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        runTestScenario();
+        runOnMachine();
+//        runTestScenario();
     }
 
     public static void runTestScenario() {
         final RootDirectory root = new RootDirectory();
         root.create("fruits");
         root.create("vegetables");
+        root.create("vegetables");
         root.create("grains");
+        root.create("fruits/apples");
         root.create("fruits/apples");
         root.create("fruits/apples/fuji");
         root.create("fruits/nuts/coconuts");
@@ -111,7 +114,15 @@ public class Main {
         root.delete("foods/fruits/apples");
         root.list();
         System.out.println();
+    }
 
+    private static boolean commandIsValid(String[] commands) {
+        return switch (commands[0]) {
+            case "LIST" -> commands.length == 1;
+            case "CREATE", "DELETE" -> commands.length == 2;
+            case "MOVE" -> commands.length == 3;
+            default -> false;
+        };
     }
 
     public static void runOnMachine() {
@@ -122,6 +133,10 @@ public class Main {
                 break;
             }
             String[] commands = command.split(" ");
+            if (!commandIsValid(commands)) {
+                System.out.println("Invalid command");
+                continue;
+            }
             switch (commands[0]) {
                 case "CREATE":
                     root.create(commands[1]);

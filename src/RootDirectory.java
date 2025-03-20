@@ -23,11 +23,17 @@ public class RootDirectory {
         if (target.isEmpty()) {
             return;
         }
+        Directory parent;
         try {
-            Directory parent = findTarget(target, true);
-            parent.create(target.substring(target.lastIndexOf("/") + 1), null);
+            parent = findTarget(target, true);
         } catch (Exception e) {
             System.out.println("Cannot create " + target + " - " + e.getMessage() + " does not exist");
+            return;
+        }
+        try {
+            parent.create(target.substring(target.lastIndexOf("/") + 1), null);
+        } catch (Exception e) {
+            System.out.println("Cannot create " + target + " - " + e.getMessage() + " already exists");
         }
     }
 

@@ -86,7 +86,7 @@ public class Main {
     }
 
     public static void runTestScenario() {
-        final RootDirectory root = new RootDirectory();
+        final Directory root = new Directory();
         root.create("fruits");
         root.create("vegetables");
         root.create("vegetables");
@@ -126,7 +126,7 @@ public class Main {
     }
 
     public static void runOnMachine() {
-        final RootDirectory root = new RootDirectory();
+        final Directory root = new Directory();
         while (true) {
             String command = scanner.nextLine();
             if (command.equals("exit")) {

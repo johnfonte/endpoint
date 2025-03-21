@@ -86,7 +86,7 @@ public class Main {
     }
 
     public static void runTestScenario() {
-        final Directory root = new Directory();
+        final Directory root = new Directory("");
         root.create("fruits");
         root.create("vegetables");
         root.create("vegetables");
@@ -126,7 +126,7 @@ public class Main {
     }
 
     public static void runOnMachine() {
-        final Directory root = new Directory();
+        final Directory root = new Directory("");
         while (true) {
             String command = scanner.nextLine();
             if (command.equals("exit")) {
@@ -138,20 +138,11 @@ public class Main {
                 continue;
             }
             switch (commands[0]) {
-                case "CREATE":
-                    root.create(commands[1]);
-                    break;
-                case "LIST":
-                    root.list();
-                    break;
-                case "DELETE":
-                    root.delete(commands[1]);
-                    break;
-                case "MOVE":
-                    root.move(commands[1], commands[2]);
-                    break;
-                default:
-                    System.out.println("Invalid command");
+                case "CREATE" -> root.create(commands[1]);
+                case "LIST" -> root.list();
+                case "DELETE" -> root.delete(commands[1]);
+                case "MOVE" -> root.move(commands[1], commands[2]);
+                default -> System.out.println("Invalid command");
             }
         }
     }

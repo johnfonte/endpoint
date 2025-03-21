@@ -1,11 +1,17 @@
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Directory {
+public class Directory implements DirectoryInterface {
+    private final String name;
     private final TreeMap<String, Directory> subdirectories;
 
-    public Directory() {
+    public Directory(String name) {
+        this.name = name;
         this.subdirectories = new TreeMap<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     private Directory findSubdirectory(String operation, String target, boolean findParent) {
@@ -41,7 +47,7 @@ public class Directory {
             printError(operation, lastDirectory, true);
             return;
         }
-        subdirectories.put(lastDirectory, new Directory());
+        subdirectories.put(lastDirectory, new Directory(lastDirectory));
     }
 
     public void move(String source, String destination) {

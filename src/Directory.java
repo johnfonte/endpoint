@@ -47,7 +47,7 @@ public class Directory implements DirectoryInterface {
             printError(operation, lastDirectory, true);
             return;
         }
-        subdirectories.put(lastDirectory, new Directory(lastDirectory));
+        parent.subdirectories.put(lastDirectory, new Directory(lastDirectory));
     }
 
     public void move(String source, String destination) {
